@@ -218,7 +218,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text('Card Back',
+                        const Text('Card Back Design',
                             style: TextStyle(
                                 color: Colors.white, fontSize: 15)),
                         const SizedBox(height: 12),

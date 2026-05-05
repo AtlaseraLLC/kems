@@ -395,7 +395,7 @@ class _GameScreenState extends State<GameScreen>
                         width: 280,
                         padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
-                          color: const Color(0xFFf64900),
+                          color: const Color(0xFF008000),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Column(
@@ -429,7 +429,7 @@ class _GameScreenState extends State<GameScreen>
                                   _dealAll();
                                 }
                               },
-                              color: Colors.black,
+                              color: const Color(0xFFf64900),
                               width: 220,
                               height: 48,
                               borderRadius: 8,
