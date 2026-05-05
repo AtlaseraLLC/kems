@@ -16,12 +16,11 @@ class MenuScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('KEMS',
-                style: TextStyle(
-                    fontSize: 48,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    letterSpacing: 8)),
+            Image.asset(
+              'assets/images/logo.png',
+              width: 160,
+              height: 160,
+            ),
             const SizedBox(height: 60),
             _MenuButton(label: 'PLAY', onTap: () {
               Navigator.push(context,
