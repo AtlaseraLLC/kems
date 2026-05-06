@@ -304,6 +304,7 @@ class _GameScreenState extends State<GameScreen>
                       _ScoreBar(
                         round: _currentRound,
                         totalRounds: totalRounds,
+                        playerName: _playerName,
                         playerWins: _playerWins,
                         computerWins: _computerWins,
                         countdown: _countdown,
@@ -331,9 +332,11 @@ class _GameScreenState extends State<GameScreen>
                               children: [
                                 _TopBar(
                                   allTimeWins: _allTimeWins,
-                                  onSettings: () {
-                                    Navigator.push(context,
+                                  onSettings: () async {
+                                    await Navigator.push(context,
                                         MaterialPageRoute(builder: (_) => const SettingsScreen()));
+                                    // Reload settings when returning
+                                    _loadSettingsAndDeal();
                                   },
                                 ),
                                 _StaticCardZone(
@@ -599,6 +602,7 @@ class _ScoreBar extends StatelessWidget {
   const _ScoreBar({
     required this.round,
     required this.totalRounds,
+    required this.playerName,
     required this.playerWins,
     required this.computerWins,
     required this.countdown,
@@ -632,7 +636,7 @@ class _ScoreBar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('You',
+              const Text(playerName,
                   style: TextStyle(
                       color: Colors.white70,
                       fontSize: 11,
