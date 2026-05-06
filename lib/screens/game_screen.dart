@@ -29,6 +29,7 @@ class _GameScreenState extends State<GameScreen>
   bool? _lastRoundPlayerWon;
 
   // Scoring
+  String _playerName = 'You';
   int _playerWins   = 0;
   int _allTimeWins = 0;
   int _computerWins = 0;
@@ -110,6 +111,7 @@ class _GameScreenState extends State<GameScreen>
       _soundEnabled  = sound;
       _timerDuration = timer;
       _cardBack      = cardBack;
+      _playerName    = name.isEmpty ? 'You' : name;
     });
     _dealAll();
   }
