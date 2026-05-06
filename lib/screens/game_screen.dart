@@ -103,17 +103,18 @@ class _GameScreenState extends State<GameScreen>
     _startDealTimer();
   }
 
-  Future<void> _loadSettingsAndDeal() async {
-    final sound   = await SettingsManager.getSoundEnabled();
-    final timer   = await SettingsManager.getTimerDuration();
+  Future<void> _loadSettingsAndDeal({bool dealCards = true}) async {
+    final sound    = await SettingsManager.getSoundEnabled();
+    final timer    = await SettingsManager.getTimerDuration();
     final cardBack = await SettingsManager.getCardBack();
+    final name     = await SettingsManager.getPlayerName();
     setState(() {
       _soundEnabled  = sound;
       _timerDuration = timer;
       _cardBack      = cardBack;
       _playerName    = name.isEmpty ? 'You' : name;
     });
-    _dealAll();
+    if (dealCards) _dealAll();
   }
 
   // ── Deal all cards (new round) ───────────────────────────────
@@ -335,8 +336,7 @@ class _GameScreenState extends State<GameScreen>
                                   onSettings: () async {
                                     await Navigator.push(context,
                                         MaterialPageRoute(builder: (_) => const SettingsScreen()));
-                                    // Reload settings when returning
-                                    _loadSettingsAndDeal();
+                                    _loadSettingsAndDeal(dealCards: false);
                                   },
                                 ),
                                 _StaticCardZone(
