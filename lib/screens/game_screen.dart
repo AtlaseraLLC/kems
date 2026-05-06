@@ -596,6 +596,7 @@ class _TopBar extends StatelessWidget {
 
 class _ScoreBar extends StatelessWidget {
   final int round, totalRounds, playerWins, computerWins;
+  final String playerName;
   final int countdown;
   final bool? lastRoundPlayerWon;
 
@@ -636,11 +637,11 @@ class _ScoreBar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(playerName,
-                  style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w500)),
+            Text(playerName,
+                style: const TextStyle(
+                    color: Colors.white70,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w500)),
               const SizedBox(height: 4),
               Row(children: List.generate(3, (i) {
                 final isLastWin = i == playerWins - 1;
