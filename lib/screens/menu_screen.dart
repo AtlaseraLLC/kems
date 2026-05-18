@@ -11,17 +11,21 @@ class MenuScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFf64900),
+      backgroundColor: const Color(0xFFF5F5F4),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/images/logo.png',
-              width: 160,
-              height: 160,
+            // Logo
+            ClipOval(
+              child: Image.asset(
+                'assets/images/logo.png',
+                width: 160,
+                height: 160,
+                fit: BoxFit.cover,
+              ),
             ),
-            const SizedBox(height: 60),
+            const SizedBox(height: 100),
             _MenuButton(label: 'PLAY', onTap: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (_) => const GameScreen()));
@@ -33,7 +37,69 @@ class MenuScreen extends StatelessWidget {
             _MenuButton(label: 'ABOUT', onTap: () {Navigator.push(context,
                 MaterialPageRoute(builder: (_) => const AboutScreen()));}),
             _MenuButton(label: 'QUIT', onTap: () {
-              SystemNavigator.pop();
+              showDialog(
+                context: context,
+                barrierDismissible: false,
+                builder: (_) => AlertDialog(
+                  backgroundColor: Colors.black,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
+                  title: const Text(
+                    'Quit Game?',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+                  content: const Text(
+                    'Are you sure you want to quit?',
+                    style: TextStyle(color: Colors.white70, fontSize: 15),
+                    textAlign: TextAlign.center,
+                  ),
+                  actionsAlignment: MainAxisAlignment.center,
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16, left: 20, right: 20),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: AnimatedButton(
+                              onPressed: () => SystemNavigator.pop(),
+                              color: const Color(0xFFf64900),
+                              height: 40,
+                              borderRadius: 8,
+                              shadowDegree: ShadowDegree.dark,
+                              child: const Text('YES',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2)),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            child: AnimatedButton(
+                              onPressed: () => Navigator.pop(context),
+                              color: Colors.white24,
+                              height: 40,
+                              borderRadius: 8,
+                              shadowDegree: ShadowDegree.light,
+                              child: const Text('NO',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold,
+                                      letterSpacing: 2)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
             }),
           ],
         ),

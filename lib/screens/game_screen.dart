@@ -210,7 +210,7 @@ class _GameScreenState extends State<GameScreen>
       if (playerWon) {
         _playerWins++;
         _allTimeWins++;
-        _winMessage = '🎉 You got Kems!';
+        _winMessage = 'Lets go! 🔥';
       } else {
         _computerWins++;
         _winMessage = '💻 Computer got Kems!';
@@ -276,6 +276,7 @@ class _GameScreenState extends State<GameScreen>
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = (screenWidth - 32) / 2;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -334,6 +335,7 @@ class _GameScreenState extends State<GameScreen>
                                 _TopBar(
                                   allTimeWins: _allTimeWins,
                                   onSettings: () async {
+                                    if (!_isPaused) _togglePause(); // Pause the game
                                     await Navigator.push(context,
                                         MaterialPageRoute(builder: (_) => const SettingsScreen()));
                                     _loadSettingsAndDeal(dealCards: false);
@@ -501,18 +503,11 @@ class _GameScreenState extends State<GameScreen>
                         ),
                       ),
                       const SizedBox(height: 16),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Color(0xFFf64900),
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 40, vertical: 14),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30)),
-                        ),
-                        // Resume button
+                      AnimatedButton(
                         onPressed: _togglePause,
-                        child: const Text(
-                          'RESUME',
+                        color: const Color(0xFFf64900),
+                        width: buttonWidth,
+                        child: const Text('RESUME',
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -569,7 +564,7 @@ class _TopBar extends StatelessWidget {
           ),
 
           // Opponent label
-          const Text(
+          /*const Text(
             'OPPONENT',
             style: TextStyle(
               color: Colors.white54,
@@ -577,7 +572,7 @@ class _TopBar extends StatelessWidget {
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
-          ),
+          ),*/
 
           // Settings icon
           GestureDetector(
@@ -920,7 +915,7 @@ class _BottomBar extends StatelessWidget {
             onPressed: onQuit,
             color: const Color(0xFFf64900),
             width: buttonWidth,
-            child: const Text('QUIT',
+            child: const Text('HOME',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 16,

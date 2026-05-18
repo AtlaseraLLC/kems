@@ -49,18 +49,23 @@ class _SplashScreenState extends State<SplashScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Center(
+      body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
+              const Spacer(),
+
               // Logo
-              Image.asset(
-                'assets/images/logo.png',
-                width: 160,
-                height: 160,
+              ClipOval(
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 160,
+                  height: 160,
+                  fit: BoxFit.cover,
+                ),
               ),
 
               const SizedBox(height: 32),
@@ -69,14 +74,14 @@ class _SplashScreenState extends State<SplashScreen>
               const Text(
                 'KEMS',
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
                   fontSize: 48,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 8,
                 ),
               ),
 
-              const SizedBox(height: 48),
+              const Spacer(),
 
               // Loading bar
               AnimatedBuilder(
@@ -84,14 +89,23 @@ class _SplashScreenState extends State<SplashScreen>
                 builder: (context, child) {
                   return Column(
                     children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                        child: LinearProgressIndicator(
-                          value: _progressAnim.value,
-                          minHeight: 6,
-                          backgroundColor: Colors.white12,
-                          valueColor: AlwaysStoppedAnimation<Color>(
-                            const Color(0xFFf64900),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.grey.shade700, width: 1.5),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: LinearProgressIndicator(
+                              value: _progressAnim.value,
+                              minHeight: 12,
+                              backgroundColor: Colors.white12,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                const Color(0xFFf64900),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -99,15 +113,16 @@ class _SplashScreenState extends State<SplashScreen>
                       Text(
                         '${(_progressAnim.value * 100).toInt()}%',
                         style: const TextStyle(
-                          color: Colors.white38,
-                          fontSize: 20,
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ],
                   );
                 },
               ),
-
+              const SizedBox(height: 50),
             ],
           ),
         ),
