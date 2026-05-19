@@ -676,7 +676,7 @@ class _ScoreBar extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Text('Computer',
+              const Text('Opponent',
                   style: TextStyle(
                       color: Colors.white70,
                       fontSize: 11,
