@@ -41,6 +41,7 @@ class MenuScreen extends StatelessWidget {
                 context: context,
                 barrierDismissible: false,
                 builder: (_) => AlertDialog(
+                  insetPadding: const EdgeInsets.only(top: 50, left: 40, right: 40),
                   backgroundColor: Colors.black,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20)),
@@ -57,6 +58,7 @@ class MenuScreen extends StatelessWidget {
                     style: TextStyle(color: Colors.white70, fontSize: 15),
                     textAlign: TextAlign.center,
                   ),
+                  actionsPadding: EdgeInsets.zero,
                   actionsAlignment: MainAxisAlignment.center,
                   actions: [
                     Padding(
