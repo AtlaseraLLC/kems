@@ -391,98 +391,125 @@ class _GameScreenState extends State<GameScreen>
           // ── Win overlay ──
           if (_showWinOverlay)
             Positioned.fill(
-              child: BackdropFilter(
-                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                child: Container(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  child: Center(
-                    child: ScaleTransition(
-                      scale: _winScaleAnim,
-                      child: Container(
-                        width: 280,
-                        padding: const EdgeInsets.all(24),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF008000),
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-
-                            // Win message
-                            Text(
-                              _winMessage,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-
-                            const SizedBox(height: 24),
-
-                            // Next game button
-                            AnimatedButton(
-                              onPressed: () {
-                                if (!mounted) return;
-                                final gameOver = _playerWins >= winsNeeded ||
-                                    _computerWins >= winsNeeded ||
-                                    _currentRound >= totalRounds;
-                                if (gameOver) {
-                                  _showGameOverSafe();
-                                } else {
-                                  setState(() => _currentRound++);
-                                  _dealAll();
-                                }
-                              },
-                              color: const Color(0xFFf64900),
-                              width: 220,
-                              height: 48,
-                              borderRadius: 8,
-                              shadowDegree: ShadowDegree.dark,
-                              child: const Text(
-                                'NEXT GAME',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1,
-                                ),
-                              ),
-                            ),
-
-                            const SizedBox(height: 12),
-
-                            // Home button
-                            AnimatedButton(
-                              onPressed: () {
-                                if (!mounted) return;
-                                Navigator.pop(context);
-                              },
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                  child: Container(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 500, left: 40, right: 40),
+                        child: ScaleTransition(
+                          scale: _winScaleAnim,
+                          child: Container(
+                            decoration: BoxDecoration(
                               color: Colors.black,
-                              width: 220,
-                              height: 48,
-                              borderRadius: 8,
-                              shadowDegree: ShadowDegree.dark,
-                              child: const Text(
-                                'HOME',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1,
-                                ),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+
+                                  // Win message
+                                  Text(
+                                    _winMessage,
+                                    style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+
+                                  const SizedBox(height: 8),
+
+                                  Text(
+                                    _playerWins > _computerWins
+                                        ? 'You are in the lead!'
+                                        : _computerWins > _playerWins
+                                        ? 'Computer is in the lead!'
+                                        : 'It\'s a tie!',
+                                    style: const TextStyle(
+                                      color: Colors.white70,
+                                      fontSize: 15,
+                                    ),
+                                    textAlign: TextAlign.center,
+                                  ),
+
+                                  const SizedBox(height: 24),
+
+                                  // Buttons
+                                  Padding(
+                                    padding: const EdgeInsets.only(bottom: 4),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: AnimatedButton(
+                                            onPressed: () {
+                                              if (!mounted) return;
+                                              final gameOver = _playerWins >= winsNeeded ||
+                                                  _computerWins >= winsNeeded ||
+                                                  _currentRound >= totalRounds;
+                                              if (gameOver) {
+                                                setState(() => _showWinOverlay = false);
+                                                _showGameOverSafe();
+                                              } else {
+                                                setState(() => _currentRound++);
+                                                _dealAll();
+                                              }
+                                            },
+                                            color: const Color(0xFFf64900),
+                                            height: 40,
+                                            borderRadius: 8,
+                                            shadowDegree: ShadowDegree.dark,
+                                            child: const Text(
+                                              'NEXT',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 2,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 8),
+                                        Expanded(
+                                          child: AnimatedButton(
+                                            onPressed: () {
+                                              if (!mounted) return;
+                                              Navigator.pop(context);
+                                            },
+                                            color: Colors.white24,
+                                            height: 40,
+                                            borderRadius: 8,
+                                            shadowDegree: ShadowDegree.light,
+                                            child: const Text(
+                                              'HOME',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold,
+                                                letterSpacing: 2,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+
+                                ],
                               ),
                             ),
-
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
             ),
 
           // ── Pause overlay ──
