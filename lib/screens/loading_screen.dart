@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'menu_screen.dart';
+import 'game_screen.dart';
 
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+class LoadingScreen extends StatefulWidget {
+  const LoadingScreen({super.key});
 
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  State<LoadingScreen> createState() => _LoadingScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
+class _LoadingScreenState extends State<LoadingScreen>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _progressAnim;
@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen>
         if (!mounted) return;
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (_) => const MenuScreen()),
+          MaterialPageRoute(builder: (_) => const GameScreen()),
         );
       }
     });
@@ -53,12 +53,41 @@ class _SplashScreenState extends State<SplashScreen>
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
               const Spacer(),
 
-              const SizedBox(height: 32),
+              // Logo
+              ClipOval(
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 120,
+                  height: 120,
+                  fit: BoxFit.cover,
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              const Text(
+                'KEMS',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 36,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 8,
+                ),
+              ),
+
+              const SizedBox(height: 8),
+
+              const Text(
+                'Setting up your game...',
+                style: TextStyle(
+                  color: Colors.black54,
+                  fontSize: 14,
+                ),
+              ),
 
               const Spacer(),
 
@@ -68,22 +97,20 @@ class _SplashScreenState extends State<SplashScreen>
                 builder: (context, child) {
                   return Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 80),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all(color: Colors.grey.shade700, width: 1.5),
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(20),
-                            child: LinearProgressIndicator(
-                              value: _progressAnim.value,
-                              minHeight: 12,
-                              backgroundColor: Colors.white12,
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                const Color(0xFFf64900),
-                              ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                              color: Colors.grey.shade700, width: 1.5),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: LinearProgressIndicator(
+                            value: _progressAnim.value,
+                            minHeight: 12,
+                            backgroundColor: Colors.black12,
+                            valueColor: const AlwaysStoppedAnimation<Color>(
+                              Color(0xFFf64900),
                             ),
                           ),
                         ),
@@ -92,7 +119,7 @@ class _SplashScreenState extends State<SplashScreen>
                       Text(
                         '${(_progressAnim.value * 100).toInt()}%',
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
@@ -101,7 +128,9 @@ class _SplashScreenState extends State<SplashScreen>
                   );
                 },
               ),
-              const SizedBox(height: 50),
+
+              const SizedBox(height: 60),
+
             ],
           ),
         ),

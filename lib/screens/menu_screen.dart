@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:animated_button/animated_button.dart';
 import 'package:kems/screens/settings_screen.dart';
+import 'loading_screen.dart';
 import 'game_screen.dart';
 import 'about_screen.dart';
 
@@ -28,7 +29,7 @@ class MenuScreen extends StatelessWidget {
             const SizedBox(height: 100),
             _MenuButton(label: 'PLAY', onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => const GameScreen()));
+                  MaterialPageRoute(builder: (_) => const LoadingScreen()));
             }),
             _MenuButton(label: 'Settings', onTap: () {
               Navigator.push(context,
