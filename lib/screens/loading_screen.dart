@@ -51,7 +51,7 @@ class _LoadingScreenState extends State<LoadingScreen>
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 40),
+          padding: const EdgeInsets.symmetric(horizontal: 80),
           child: Column(
             children: [
 
