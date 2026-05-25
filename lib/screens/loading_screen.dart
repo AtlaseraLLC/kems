@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
     );
 
     _progressAnim = Tween<double>(begin: 0, end: 1).animate(
@@ -58,28 +58,7 @@ class _SplashScreenState extends State<SplashScreen>
 
               const Spacer(),
 
-              // Logo
-              ClipOval(
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  width: 160,
-                  height: 160,
-                  fit: BoxFit.cover,
-                ),
-              ),
-
               const SizedBox(height: 32),
-
-              // App name
-              const Text(
-                'KEMS',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 48,
-                  fontWeight: FontWeight.bold,
-                  letterSpacing: 8,
-                ),
-              ),
 
               const Spacer(),
 
