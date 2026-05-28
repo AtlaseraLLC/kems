@@ -231,7 +231,7 @@ class _GameScreenState extends State<GameScreen>
       builder: (_) => AlertDialog(
         backgroundColor: Colors.white70,
         title: Text(
-          playerWon ? '🏆 You Win!' : '💻 Computer Wins!',
+          playerWon ? '🏆 You Win!' : '💻 Opponent Wins!',
           style: const TextStyle(color: Colors.white, fontSize: 24),
           textAlign: TextAlign.center,
         ),
