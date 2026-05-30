@@ -97,7 +97,7 @@ class AboutScreen extends StatelessWidget {
 
                     _AboutCard(
                       title: 'DEVELOPED BY',
-                      content: 'Atlasera, Ltd\n© 2026 All rights reserved.',
+                      content: 'Atlasera, LLC\n© 2026 All rights reserved.',
                     ),
 
                     const SizedBox(height: 40),
