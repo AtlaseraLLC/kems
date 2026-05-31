@@ -213,7 +213,7 @@ class _GameScreenState extends State<GameScreen>
         _winMessage = 'Lets go! 🔥';
       } else {
         _computerWins++;
-        _winMessage = '💻 Computer got Kems!';
+        _winMessage = 'So close!';
         GameLogic.revealComputerHand(_computerHand);
       }
       _showWinOverlay = true;
@@ -236,7 +236,7 @@ class _GameScreenState extends State<GameScreen>
           textAlign: TextAlign.center,
         ),
         content: Text(
-          'Final Score\nYou $_playerWins — $_computerWins Computer',
+          'Final Score\nYou $_playerWins — $_computerWins Opponent',
           style: const TextStyle(color: Colors.white70, fontSize: 18),
           textAlign: TextAlign.center,
         ),
