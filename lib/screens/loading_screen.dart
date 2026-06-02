@@ -101,7 +101,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
-                              color: Colors.grey.shade700, width: 1.5),
+                              color: Colors.grey.shade700, width: 1),
                         ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(20),
