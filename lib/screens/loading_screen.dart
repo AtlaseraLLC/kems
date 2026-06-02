@@ -119,7 +119,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                       Text(
                         '${(_progressAnim.value * 100).toInt()}%',
                         style: const TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.bold,
                         ),
