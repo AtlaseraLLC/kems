@@ -223,49 +223,80 @@ class _GameScreenState extends State<GameScreen>
 
   void _showGameOverSafe() {
     if (!mounted) return;
-    final ctx = context; // capture before async gap
+    final ctx = context;
     final playerWon = _playerWins > _computerWins;
     showDialog(
       context: ctx,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        backgroundColor: Colors.white70,
+        insetPadding: const EdgeInsets.only(top: 50, left: 40, right: 40),
+        backgroundColor: Colors.black,
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20)),
         title: Text(
-          playerWon ? '🏆 You Win!' : 'You Lost!',
-          style: const TextStyle(color: Colors.white, fontSize: 24),
+          playerWon ? '🏆 You Win!' : '💻 You Lost!',
+          style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
         content: Text(
           'Final Score\nYou $_playerWins — $_computerWins Opponent',
-          style: const TextStyle(color: Colors.white70, fontSize: 18),
+          style: const TextStyle(color: Colors.white70, fontSize: 15),
           textAlign: TextAlign.center,
         ),
+        actionsPadding: EdgeInsets.zero,
         actionsAlignment: MainAxisAlignment.center,
         actions: [
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.amber.shade700),
-            onPressed: () {
-              Navigator.pop(ctx);
-              setState(() {
-                _playerWins   = 0;
-                _computerWins = 0;
-                _currentRound = 1;
-              });
-              _dealAll();
-            },
-            child: const Text('Play Again',
-                style: TextStyle(color: Colors.white)),
-          ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red.shade700),
-            onPressed: () {
-              Navigator.pop(ctx);
-              Navigator.pop(ctx);
-            },
-            child: const Text('Quit',
-                style: TextStyle(color: Colors.white)),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 16, left: 20, right: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  child: AnimatedButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                      setState(() {
+                        _playerWins   = 0;
+                        _computerWins = 0;
+                        _currentRound = 1;
+                      });
+                      _dealAll();
+                    },
+                    color: const Color(0xFFf64900),
+                    height: 40,
+                    borderRadius: 8,
+                    shadowDegree: ShadowDegree.dark,
+                    child: const Text('PLAY AGAIN',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2)),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: AnimatedButton(
+                    onPressed: () {
+                      Navigator.pop(ctx);
+                      Navigator.pop(ctx);
+                    },
+                    color: Colors.white24,
+                    height: 40,
+                    borderRadius: 8,
+                    shadowDegree: ShadowDegree.light,
+                    child: const Text('HOME',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2)),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
