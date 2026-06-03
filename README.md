@@ -46,10 +46,6 @@ lib/
 
 ![Gameplay](assets/screenshots/gameplay.png)
 
-### 🎮 In-Game UI
-
-![In-Game UI](assets/screenshots/in_game_ui.png)
-
 ### 🏆 Results / Winning Screen
 
 ![Results Screen](assets/screenshots/results.png)
