@@ -92,25 +92,28 @@ class _LoadingScreenState extends State<LoadingScreen>
               const Spacer(),
 
               // Loading bar
+              // Loading bar
               AnimatedBuilder(
                 animation: _progressAnim,
                 builder: (context, child) {
                   return Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                              color: Colors.grey.shade700, width: 1),
-                        ),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(20),
-                          child: LinearProgressIndicator(
-                            value: _progressAnim.value,
-                            minHeight: 12,
-                            backgroundColor: Colors.black12,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              Color(0xFFf64900),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 80),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            border: Border.all(color: Colors.grey.shade700, width: 1),
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(20),
+                            child: LinearProgressIndicator(
+                              value: _progressAnim.value,
+                              minHeight: 12,
+                              backgroundColor: Colors.white12,
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                const Color(0xFFf64900),
+                              ),
                             ),
                           ),
                         ),
@@ -120,7 +123,7 @@ class _LoadingScreenState extends State<LoadingScreen>
                         '${(_progressAnim.value * 100).toInt()}%',
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
