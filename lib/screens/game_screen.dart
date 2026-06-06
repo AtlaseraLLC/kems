@@ -422,59 +422,93 @@ class _GameScreenState extends State<GameScreen>
           // ── Win overlay ──
           if (_showWinOverlay)
             Positioned.fill(
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
-                  child: Container(
-                    color: Colors.black.withValues(alpha: 0.5),
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: Padding(
-                        padding: const EdgeInsets.only(top: 500, left: 40, right: 40),
-                        child: ScaleTransition(
-                          scale: _winScaleAnim,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(24),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 6, sigmaY: 6),
+                child: Container(
+                  color: Colors.black.withValues(alpha: 0.5),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 150, left: 40, right: 40),
+                      child: ScaleTransition(
+                        scale: _winScaleAnim,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
 
-                                  // Win message
-                                  Text(
-                                    _winMessage,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
+                              // ── Image area ──
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20),
+                                ),
+                                child: Image.asset(
+                                  _playerWins > _computerWins
+                                      ? 'assets/images/win.png'
+                                      : 'assets/images/lose.png',
+                                  width: double.infinity,
+                                  height: 180,
+                                  fit: BoxFit.cover,
+                                  errorBuilder: (context, error, stackTrace) =>
+                                      Container(
+                                        width: double.infinity,
+                                        height: 180,
+                                        color: _playerWins > _computerWins
+                                            ? const Color(0xFFf64900)
+                                            : Colors.grey.shade800,
+                                        child: Icon(
+                                          _playerWins > _computerWins
+                                              ? Icons.emoji_events
+                                              : Icons.sentiment_dissatisfied,
+                                          color: Colors.white,
+                                          size: 64,
+                                        ),
+                                      ),
+                                ),
+                              ),
+
+                              // ── Text and buttons ──
+                              Padding(
+                                padding: const EdgeInsets.all(24),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+
+                                    // Win message
+                                    Text(
+                                      _winMessage,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
 
-                                  const SizedBox(height: 8),
+                                    const SizedBox(height: 8),
 
-                                  Text(
-                                    _playerWins > _computerWins
-                                        ? 'You are in the lead!'
-                                        : _computerWins > _playerWins
-                                        ? 'Computer is in the lead!'
-                                        : 'It\'s a tie!',
-                                    style: const TextStyle(
-                                      color: Colors.white70,
-                                      fontSize: 15,
+                                    Text(
+                                      _playerWins > _computerWins
+                                          ? 'You are in the lead!'
+                                          : _computerWins > _playerWins
+                                          ? 'Computer is in the lead!'
+                                          : 'It\'s a tie!',
+                                      style: const TextStyle(
+                                        color: Colors.white70,
+                                        fontSize: 15,
+                                      ),
+                                      textAlign: TextAlign.center,
                                     ),
-                                    textAlign: TextAlign.center,
-                                  ),
 
-                                  const SizedBox(height: 24),
+                                    const SizedBox(height: 24),
 
-                                  // Buttons
-                                  Padding(
-                                    padding: const EdgeInsets.only(bottom: 4),
-                                    child: Row(
+                                    // Buttons
+                                    Row(
                                       children: [
                                         Expanded(
                                           child: AnimatedButton(
@@ -530,17 +564,19 @@ class _GameScreenState extends State<GameScreen>
                                         ),
                                       ],
                                     ),
-                                  ),
 
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
+
+                            ],
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
+              ),
             ),
 
           // ── Pause overlay ──
