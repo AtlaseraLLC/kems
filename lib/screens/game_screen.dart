@@ -429,7 +429,7 @@ class _GameScreenState extends State<GameScreen>
                   child: Align(
                     alignment: Alignment.topCenter,
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 150, left: 40, right: 40),
+                      padding: const EdgeInsets.only(top: 250, left: 40, right: 40),
                       child: ScaleTransition(
                         scale: _winScaleAnim,
                         child: Container(
