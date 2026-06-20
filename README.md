@@ -111,7 +111,7 @@ flutter test
 * 🌐 Online multiplayer support
 * 🤖 AI opponents
 * 🎮 Animations and enhanced UX
-* ☁️ Backend integration (Firebase / custom server)
+* ☁️ Backend integration
 * 🏆 Leaderboards and player stats
 
 ---
