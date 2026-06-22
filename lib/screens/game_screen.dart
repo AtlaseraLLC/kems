@@ -496,7 +496,7 @@ class _GameScreenState extends State<GameScreen>
                                       _playerWins > _computerWins
                                           ? 'You are in the lead!'
                                           : _computerWins > _playerWins
-                                          ? 'Computer is in the lead!'
+                                          ? 'Opponent is in the lead!'
                                           : 'It\'s a tie!',
                                       style: const TextStyle(
                                         color: Colors.white70,
