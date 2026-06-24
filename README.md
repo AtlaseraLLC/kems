@@ -109,7 +109,6 @@ flutter test
 ## 🔄 Future Improvements
 
 * 🌐 Online multiplayer support
-* 🤖 AI opponents
 * 🎮 Animations and enhanced UX
 * ☁️ Backend integration
 * 🏆 Leaderboards and player stats
