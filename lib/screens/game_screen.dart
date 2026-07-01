@@ -45,6 +45,7 @@ class _GameScreenState extends State<GameScreen>
   // Win animation
   late AnimationController _winAnimController;
   late Animation<double> _winScaleAnim;
+  late ConfettiController _confettiController;
   String _winMessage  = '';
   bool _showWinOverlay = false;
 
@@ -63,6 +64,9 @@ class _GameScreenState extends State<GameScreen>
     _winScaleAnim = CurvedAnimation(
       parent: _winAnimController,
       curve: Curves.elasticOut,
+    );
+    _confettiController = ConfettiController(
+      duration: const Duration(seconds: 3),
     );
     _loadSettingsAndDeal();
   }
