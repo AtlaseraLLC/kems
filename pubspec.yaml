@@ -13,6 +13,7 @@ dependencies:
   audioplayers: ^6.0.0
   animated_button: ^0.3.1
   shared_preferences: ^2.3.0
+  confetti: ^0.7.0
 
 dev_dependencies:
   flutter_test:
