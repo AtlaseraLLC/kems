@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:animated_button/animated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:confetti/confetti.dart';
 import 'package:kems/screens/settings_screen.dart';
 import '../models/card_model.dart';
 import '../models/deck_model.dart';
@@ -76,6 +77,7 @@ class _GameScreenState extends State<GameScreen>
     _audioPlayer.dispose();
     _dealTimer?.cancel();
     _winAnimController.dispose();
+    _confettiController.dispose();
     super.dispose();
   }
 
@@ -223,6 +225,7 @@ class _GameScreenState extends State<GameScreen>
       _showWinOverlay = true;
     });
     _winAnimController.forward(from: 0);
+    if (playerWon) _confettiController.play();
   }
 
   void _showGameOverSafe() {
@@ -424,6 +427,26 @@ class _GameScreenState extends State<GameScreen>
           ),
 
           // ── Win overlay ──
+          // ── Confetti ──
+          Align(
+            alignment: Alignment.topCenter,
+            child: ConfettiWidget(
+              confettiController: _confettiController,
+              blastDirectionality: BlastDirectionality.explosive,
+              shouldLoop: false,
+              colors: const [
+                Color(0xFFf64900),
+                Colors.white,
+                Colors.amber,
+                Colors.green,
+                Colors.blue,
+              ],
+              numberOfParticles: 30,
+              maxBlastForce: 20,
+              minBlastForce: 8,
+              emissionFrequency: 0.05,
+            ),
+          ),
           if (_showWinOverlay)
             Positioned.fill(
               child: BackdropFilter(
