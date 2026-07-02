@@ -6,7 +6,7 @@ class AdManager {
   // Ad Unit IDs
   static String get bannerAdUnitId {
     if (_testMode) {
-      return 'ca-app-pub-3940256099942544/6300978111'; // Test ID
+      return 'ca-app-pub-2350572386584705~9269164127'; // Test ID
     }
     return 'ca-app-pub-XXXXXXXXXXXXXXXX/XXXXXXXXXX'; // Real ID
   }
