@@ -229,6 +229,9 @@ class _GameScreenState extends State<GameScreen>
   }
 
   void _showGameOverSafe() {
+    // Load and show interstitial
+    final interstitial = await AdManager.loadInterstitialAd();
+    interstitial?.show();
     if (!mounted) return;
     final ctx = context;
     final playerWon = _playerWins > _computerWins;
